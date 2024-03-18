@@ -624,7 +624,7 @@ impl<T: Poolable> Checkout<T> {
             });
 
             let (entry, empty) = if let Some((e, empty)) = maybe_entry {
-                (Some(e), empty)
+                (if empty { None } else { Some(e) }, empty)
             } else {
                 // No entry found means nuke the list for sure.
                 (None, true)
